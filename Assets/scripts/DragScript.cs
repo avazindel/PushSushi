@@ -27,51 +27,66 @@ public class DragScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+
+        // Decide input source
+        bool isTouch = Input.touchCount > 0;
+        bool isMouse = Input.GetMouseButton(0);
+
+
+        Vector3 inputPos = Vector3.zero;
+        bool inputBegan = false;
+        bool inputMoved = false;
+        bool inputEnded = false;
+
+        //Claude input for web build
+        if (isTouch)
         {
-            //get mouse cursor holding down
             Touch touch = Input.GetTouch(0);
+            inputPos = Camera.main.ScreenToWorldPoint(touch.position);
+            inputBegan = touch.phase == TouchPhase.Began;
+            inputMoved = touch.phase == TouchPhase.Moved;
+            inputEnded = touch.phase == TouchPhase.Ended;
+        }
+        else if (isMouse)
+        {
+            inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            inputBegan = Input.GetMouseButtonDown(0);
+            inputMoved = Input.GetMouseButton(0);
+            inputEnded = Input.GetMouseButtonUp(0);
+        }
 
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-            touchPos.z = 0f;
+        inputPos.z = 0f;
 
-            switch (touch.phase)
+        // Now use inputBegan / inputMoved / inputEnded exactly like before
+        if (inputBegan)
+        {
+            if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(inputPos))
             {
-                case TouchPhase.Began:
-
-                    //if object touched has a collider and this script
-                    if(GetComponent<Collider2D> () == Physics2D.OverlapPoint(touchPos))
-                    {
-                        //then you can move this object
-                        thisColTouched = true;
-                        moveAllowed = true;
-                        rb.bodyType = RigidbodyType2D.Dynamic;
-
-                        //deterine move point
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
-                    }
-
-                    break;
-
-                case TouchPhase.Moved:
-
-                    if (moveAllowed && thisColTouched)
-                    {
-                        rb.MovePosition(new Vector2(touchPos.x - deltaX,
-                            touchPos.y - deltaY));
-                    }
-                    break;
-
-                //case TouchPhase.Ended:
-                //case TouchPhase.Cancelled:
-                    //thisColTouched = false;
-                    //moveAllowed = false;
-                    //rb.bodyType = RigidbodyType2D.Kinematic;
-                    //break;
-
+                thisColTouched = true;
+                moveAllowed = true;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                deltaX = inputPos.x - transform.position.x;
+                deltaY = inputPos.y - transform.position.y;
             }
-
+        }
+        else if (inputMoved && moveAllowed && thisColTouched)
+        {
+            rb.MovePosition(new Vector2(inputPos.x - deltaX, inputPos.y - deltaY));
+        }
+        else if (inputEnded)
+        {
+            thisColTouched = false;
+            moveAllowed = false;
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
     }
+
+    //case TouchPhase.Ended:
+    //case TouchPhase.Cancelled:
+    //thisColTouched = false;
+    //moveAllowed = false;
+    //rb.bodyType = RigidbodyType2D.Kinematic;
+    //break;
+
 }
+

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2647191225313755256}
   - component: {fileID: -3390665760275262878}
   - component: {fileID: 6304333883490998974}
-  - component: {fileID: -7910333619369361153}
+  - component: {fileID: 6525429136319312945}
   m_Layer: 0
   m_Name: ladybug
   m_TagString: Untagged
@@ -167,7 +167,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!114 &-7910333619369361153
+--- !u!114 &6525429136319312945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,6 +176,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3680385247766844583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b117c3e29c850496eb6c20c4c42de5ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e7acd435e7d04b31bfa81a4835c20ee, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Drag
+  m_EditorClassIdentifier: Assembly-CSharp::DragRewrite
