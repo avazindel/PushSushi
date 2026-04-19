@@ -7,7 +7,10 @@ public class DragRewrite : MonoBehaviour
 {
     float deltaX, deltaY;
     bool isDragging = false;
+    bool isPressed = false;
     Rigidbody2D rb;
+
+    public Camera cam;
 
     void Awake()
     {
