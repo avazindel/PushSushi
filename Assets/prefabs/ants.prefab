@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 5246079941089856500}
   - component: {fileID: -2367571464792438549}
   - component: {fileID: 6552606825854839621}
+  - component: {fileID: 1539872050354456771}
   m_Layer: 0
   m_Name: ants
   m_TagString: Untagged
@@ -478,6 +479,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 6
+--- !u!114 &1539872050354456771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407370779682075984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b117c3e29c850496eb6c20c4c42de5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Drag
 --- !u!1 &3601570718947830876
 GameObject:
   m_ObjectHideFlags: 0
