@@ -7,7 +7,13 @@ public class NextManager : MonoBehaviour
 
     public void goToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("menu");
+
+    }
+
+    public void goToOne()
+    {
+        SceneManager.LoadScene("level 2");
 
     }
 
