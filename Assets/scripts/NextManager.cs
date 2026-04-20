@@ -11,6 +11,14 @@ public class NextManager : MonoBehaviour
 
     }
 
+
+    public void howtoplay()
+    {
+        SceneManager.LoadScene("howto");
+
+    }
+
+
     public void goToOne()
     {
         SceneManager.LoadScene("level 1");
