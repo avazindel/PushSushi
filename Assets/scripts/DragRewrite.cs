@@ -5,17 +5,19 @@ using UnityEngine.InputSystem;
 
 public class DragRewrite : MonoBehaviour
 {
+    private AudioSource audioSource;
+
     float deltaX, deltaY;
     bool isDragging = false;
     bool isPressed = false;
     Rigidbody2D rb;
 
-    public Camera cam;
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -33,6 +35,7 @@ public class DragRewrite : MonoBehaviour
                 rb.bodyType = RigidbodyType2D.Dynamic;
                 deltaX = mousePos.x - transform.position.x;
                 deltaY = mousePos.y - transform.position.y;
+     
             }
         }
 
@@ -40,6 +43,7 @@ public class DragRewrite : MonoBehaviour
         if (Mouse.current.leftButton.isPressed && isDragging)
         {
             rb.MovePosition(new Vector2(mousePos.x - deltaX, mousePos.y - deltaY));
+            audioSource.Play();
         }
 
         // On release, stop dragging

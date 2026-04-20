@@ -13,7 +13,7 @@ public class NextManager : MonoBehaviour
 
     public void goToOne()
     {
-        SceneManager.LoadScene("level 2");
+        SceneManager.LoadScene("level 1");
 
     }
 
